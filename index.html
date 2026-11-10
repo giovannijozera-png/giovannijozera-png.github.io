@@ -3,45 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Jogos</title>
-    <meta name="google-adsense-account" content="ca-pub-8530977331994052">
-    <style><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8530977331994052"
-     crossorigin="anonymous"></script>
-        body { font-family: Arial; background: #1a1a2e; color: white; margin: 0; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        h1 { text-align: center; color: #00f5d4; }
-        .jogo { background: #16213e; padding: 20px; margin: 15px 0; border-radius: 10px; }
-        a { color: #00f5d4; text-decoration: none; font-weight: bold; }
+    <title>Meus Jogos 🎮</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            color: #f0f0f0;
+        }
+
+        /* === CABEÇALHO === */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #818cf8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: #f0f0f0;
+        }
+
+        .header-info {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .online-badge {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .online-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* === CONTEÚDO PRINCIPAL === */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-size: 36px;
+            color: #e0e7ff;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            color: #94a3b8;
+            font-size: 18px;
+        }
+
+        /* === GRADE DE JOGOS === */
+        .jogos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .jogo-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .jogo-card:hover {
+            transform: translateY(-8px);
+            border-color: #6366f1;
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.25);
+        }
+
+        .jogo-capa {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #1e293b;
+        }
+
+        .jogo-info {
+            padding: 20px;
+        }
+
+        .jogo-nome {
+            font-size: 22px;
+            font-weight: bold;
+            color: #e0e7ff;
+            margin-bottom: 10px;
+        }
+
+        .jogo-desc {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .btn-jogar {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-jogar:hover {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+
+        /* === SEM IMAGEM === */
+        .sem-imagem {
+            height: 200px;
+            background: linear-gradient(135deg, #312e81 0%, #4c1d95 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #64748b;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎮 Meus Jogos</h1>
-        
 
-<div class="jogo">
-<   <img src="Captura de tela 2026-11-10 085937.png" alt="Shark Surf v30" style="width: 100%; max-width: 500px; border-radius: 8px; margin-bottom: 15px;">
-    <h3>Shark Surf v30</h3>
-    <p>Desliza e se diverte! Joga direto sem baixar 🎮</p>
-    <a href="capivara-surf-v30.html" target="_blank">▶️ JOGAR AGORA</a>
-</div>
-
-
-
-        </div>
+<!-- === CABEÇALHO === -->
+<header>
+    <div class="logo">
+        🎮 <span>Meus Jogos</span>
     </div>
-<div class="jogo">
-<   <img src="Captura de tela 2026-11-10 091000.png" alt="Rocha da Lucy" style="width: 100%; max-width: 500px; border-radius: 8px; margin-bottom: 15px;">
-    <h3>Rocha da Lucy</h3>
-    <p>Explore e divirta-se! Joga direto sem baixar 🎮</p>
-    <a href="Roca_da_Lucy.html" target="_blank">▶️ JOGAR AGORA</a>
+    <div class="header-info">
+        <div class="online-badge">3 jogando agora</div>
+    </div>
+</header>
 
-<div class="jogo">
-<   <img src="Captura de tela 2026-11-10 091855.png" alt="Hortilike" style="width: 100%; max-width: 500px; border-radius: 8px; margin-bottom: 15px;">
-    <h3>Hortilike</h3>
-    <p>Jogo incrível! Divirta-se jogando direto no navegador 🎮</p>
-    <a href="Hortilike.html" target="_blank">▶️ JOGAR AGORA</a>
-</div>
-</div>
+<!-- === CONTEÚDO PRINCIPAL === -->
+<main>
+    <div class="page-title">
+        <h1>Jogos Online Grátis 🎮</h1>
+        <p>Joga direto no navegador, sem precisar baixar nada!</p>
+    </div>
+
+    <div class="jogos-grid">
+
+        <!-- 🦈 SHARK SURF -->
+        <div class="jogo-card">
+            <img src="Captura de tela 2026-11-10 085937.png" alt="Shark Surf v30" class="jogo-capa">
+            <div class="jogo-info">
+                <h3 class="jogo-nome">Shark Surf v30</h3>
+                <p class="jogo-desc">Desliza e se diverte! Joga direto sem baixar 🦈🏄</p>
+                <a href="capivara-surf-v30.html" target="_blank" class="btn-jogar">▶️ JOGAR AGORA</a>
+            </div>
+        </div>
+
+        <!-- 🏔️ ROCHA DA LUCY -->
+        <div class="jogo-card">
+            <img src="Captura de tela 2026-11-10 091000.png" alt="Rocha da Lucy" class="jogo-capa">
+            <div class="jogo-info">
+                <h3 class="jogo-nome">Rocha da Lucy</h3>
+                <p class="jogo-desc">Explore e divirta-se! Uma aventura te espera 🏔️✨</p>
+                <a href="Roca_da_Lucy.html" target="_blank" class="btn-jogar">▶️ JOGAR AGORA</a>
+            </div>
+        </div>
+
+        <!-- 🌿 HORTILIKE -->
+        <div class="jogo-card">
+            <img src="Captura de tela 2026-11-10 091855.png" alt="Hortilike" class="jogo-capa">
+            <div class="jogo-info">
+                <h3 class="jogo-nome">Hortilike</h3>
+                <p class="jogo-desc">Jogo de aventura e estratégia! Divirta-se 🌿🎮</p>
+                <a href="Hortilike.html" target="_blank" class="btn-jogar">▶️ JOGAR AGORA</a>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <p>🎮 Meus Jogos — Todos os direitos reservados</p>
+</footer>
+
 </body>
 </html>
+
