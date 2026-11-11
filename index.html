@@ -1,211 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Meus Jogos — Jogue Direto no Navegador!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- === ESTILO PERSONALIZADO === -->
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        body {
+            background: #0f0f0f;
+            color: #ffffff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+        }
 
-body {
-    background: #0f0f0f;
-    color: #ffffff;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    line-height: 1.6;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-}
+        .titulo-pagina {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            color: #ffffff;
+        }
 
-.titulo-pagina {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 50px;
-    color: #ffffff;
-}
+        .grade-jogos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            align-items: stretch;
+        }
 
-.grade-jogos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    align-items: stretch;
-}
+        .cartao-jogo {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
 
-.cartao-jogo {
-    background: #1a1a1a;
-    border-radius: 16px;
-    padding: 15px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
+        .cartao-jogo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
 
-.cartao-jogo::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-}
+        .cartao-shark::before { background: linear-gradient(90deg, #00d4ff, #0099cc); }
+        .cartao-lucy::before { background: linear-gradient(90deg, #ff9500, #cc7700); }
+        .cartao-hortilike::before { background: linear-gradient(90deg, #34c759, #289647); }
+        .cartao-turbo::before { background: linear-gradient(90deg, #ff3b30, #cc2f26); }
 
-.cartao-shark::before { background: linear-gradient(90deg, #00d4ff, #0099cc); }
-.cartao-lucy::before { background: linear-gradient(90deg, #ff9500, #cc7700); }
-.cartao-hortilike::before { background: linear-gradient(90deg, #34c759, #289647); }
-.cartao-turbo::before { background: linear-gradient(90deg, #ff3b30, #cc2f26); }
+        .cartao-jogo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
 
-.cartao-jogo:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
+        .capa-jogo {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
 
-.capa-jogo {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 15px;
-}
+        .nome-jogo {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
 
-.nome-jogo {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #ffffff;
-}
+        .descricao-jogo {
+            font-size: 14px;
+            color: #b0b0b0;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
 
-.descricao-jogo {
-    font-size: 14px;
-    color: #b0b0b0;
-    margin-bottom: 20px;
-    flex-grow: 1;
-}
+        .botao-jogar {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
 
-.botao-jogar {
-    display: inline-block;
-    padding: 12px 30px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    transition: all 0.3s;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-}
+        .botao-shark { background: linear-gradient(135deg, #00d4ff, #0099cc); color: white; }
+        .botao-lucy { background: linear-gradient(135deg, #ff9500, #cc7700); color: white; }
+        .botao-hortilike { background: linear-gradient(135deg, #34c759, #289647); color: white; }
+        .botao-turbo { background: linear-gradient(135deg, #ff3b30, #cc2f26); color: white; }
 
-.botao-shark { background: linear-gradient(135deg, #00d4ff, #0099cc); color: white; }
-.botao-lucy { background: linear-gradient(135deg, #ff9500, #cc7700); color: white; }
-.botao-hortilike { background: linear-gradient(135deg, #34c759, #289647); color: white; }
-.botao-turbo { background: linear-gradient(135deg, #ff3b30, #cc2f26); color: white; }
+        .botao-jogar:hover {
+            transform: scale(1.05);
+        }
 
-.botao-jogar:hover {
-    transform: scale(1.05);
-}
+        .apoie {
+            text-align: center;
+            margin: 60px 0 30px;
+            padding-top: 40px;
+            border-top: 1px solid #2a2a2a;
+        }
 
-.apoie {
-    text-align: center;
-    margin: 60px 0 30px;
-    padding-top: 40px;
-    border-top: 1px solid #2a2a2a;
-}
-</style>
+        .musica-container {
+            text-align: center;
+            margin: 40px 0;
+            padding-top: 20px;
+        }
 
-<!-- === CONTEÚDO DOS JOGOS === -->
-<div class="container">
-    <h1 class="titulo-pagina">🎮 Meus Jogos — Jogue Direto no Navegador!</h1>
-    
-    <div class="grade-jogos">
+        .botao-musica {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .botao-musica:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="titulo-pagina">🎮 Meus Jogos — Jogue Direto no Navegador!</h1>
         
-       <!-- === SHARK SURF === -->
-<div class="cartao-jogo cartao-shark">
-    <img src="Captura de tela 2026-11-11 163203.png" alt="Shark Surf v30" class="capa-jogo">
-    <h3 class="nome-jogo">🦈 Shark Surf v30</h3>
-    <p class="descricao-jogo">Desliza e se diverte! Joga direto sem precisar baixar nada! 🌊</p>
-    <a href="capivara-surf-v30.html" target="_blank" class="botao-jogar botao-shark">▶️ JOGAR AGORA</a>
-</div>
+        <div class="grade-jogos">
+            
+            <!-- 🦈 SHARK SURF -->
+            <div class="cartao-jogo cartao-shark">
+                <img src="Captura de tela 2026-11-11 163203.png" alt="Shark Surf v30" class="capa-jogo">
+                <h3 class="nome-jogo">🦈 Shark Surf v30</h3>
+                <p class="descricao-jogo">Desliza e se diverte! Joga direto sem precisar baixar nada! 🌊</p>
+                <a href="capivara-surf-v30.html" target="_blank" class="botao-jogar botao-shark">▶️ JOGAR AGORA</a>
+            </div>
 
-<!-- === ROCHA DA LUCY === -->
-<div class="cartao-jogo cartao-lucy">
-    <img src="Captura de tela 2026-11-11 162910.png" alt="Rocha da Lucy" class="capa-jogo">
-    <h3 class="nome-jogo">🏔️ Rocha da Lucy</h3>
-    <p class="descricao-jogo">Explore e divirta-se! Uma aventura te espera nas montanhas! ⛰️</p>
-    <a href="Roca_da_Lucy.html" target="_blank" class="botao-jogar botao-lucy">▶️ JOGAR AGORA</a>
-</div>
+            <!-- 🏔️ ROCHA DA LUCY -->
+            <div class="cartao-jogo cartao-lucy">
+                <img src="Captura de tela 2026-11-11 162910.png" alt="Rocha da Lucy" class="capa-jogo">
+                <h3 class="nome-jogo">🏔️ Rocha da Lucy</h3>
+                <p class="descricao-jogo">Explore e divirta-se! Uma aventura te espera nas montanhas! ⛰️</p>
+                <a href="Roca_da_Lucy.html" target="_blank" class="botao-jogar botao-lucy">▶️ JOGAR AGORA</a>
+            </div>
 
-<!-- === HORTILIKE === -->
-<div class="cartao-jogo cartao-hortilike">
-    <img src="Captura de tela 2026-11-11 163056.png" alt="Hortilike" class="capa-jogo">
-    <h3 class="nome-jogo">🌿 Hortilike</h3>
-    <p class="descricao-jogo">Jogo de aventura e estratégia! Divirta-se plantando e explorando! 🌱</p>
-    <a href="Hortilike.html" target="_blank" class="botao-jogar botao-hortilike">▶️ JOGAR AGORA</a>
-</div>
+            <!-- 🌿 HORTILIKE -->
+            <div class="cartao-jogo cartao-hortilike">
+                <img src="Captura de tela 2026-11-11 163056.png" alt="Hortilike" class="capa-jogo">
+                <h3 class="nome-jogo">🌿 Hortilike</h3>
+                <p class="descricao-jogo">Jogo de aventura e estratégia! Divirta-se plantando e explorando! 🌱</p>
+                <a href="Hortilike.html" target="_blank" class="botao-jogar botao-hortilike">▶️ JOGAR AGORA</a>
+            </div>
 
-<!-- === TURBO ARCADE 3D === -->
-<div class="cartao-jogo cartao-turbo">
-    <img src="Captura de tela 2026-11-11 145538.png" alt="Turbo Arcade 3D Corrida" class="capa-jogo">
-    <h3 class="nome-jogo">🏁 Turbo Arcade 3D Corrida</h3>
-    <p class="descricao-jogo">Corrida 3D divertida! Escolha seu personagem e acelera! 🚗💨</p>
-    <a href="Turbo Arcade 3D (2).html" target="_blank" class="botao-jogar botao-turbo">▶️ JOGAR AGORA</a>
-</div>
+            <!-- 🏁 TURBO ARCADE 3D -->
+            <div class="cartao-jogo cartao-turbo">
+                <img src="Captura de tela 2026-11-11 145538.png" alt="Turbo Arcade 3D Corrida" class="capa-jogo">
+                <h3 class="nome-jogo">🏁 Turbo Arcade 3D Corrida</h3>
+                <p class="descricao-jogo">Corrida 3D divertida! Escolha seu personagem e acelera! 🚗💨</p>
+                <a href="Turbo Arcade 3D (2).html" target="_blank" class="botao-jogar botao-turbo">▶️ JOGAR AGORA</a>
+            </div>
+        </div>
 
+        <!-- 🎵 MÚSICA DE FUNDO -->
+        <div class="musica-container">
+            <audio id="musicaFundo" loop preload="auto">
+                <source src="MEUS JOGOS - V1.mp3" type="audio/mpeg">
+                Seu navegador não suporta áudio.
+            
+            <button onclick="toggleMusica()" class="botao-musica" id="botaoMusica">
+                🎵 Tocar Música
+            </button>
+        </div>
 
+        <!-- 💛 BOTÃO DE APOIO -->
+        <div class="apoie">
+            <p style="color: #888; margin-bottom: 15px; font-size: 16px;">💛 Gostou dos jogos? Ajude-me a criar mais conteúdos gratuitos!</p>
+            <a href="https://ko-fi.com/meusjogos" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: #FF5E5B; color: white; padding: 12px 28px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 16px; transition: transform 0.2s;">
+                ☕ Me pague um café
+            </a>
+        </div>
     </div>
 
-    <!-- 💛 BOTÃO DE APOIO -->
-    <div class="apoie">
-        <p style="color: #888; margin-bottom: 15px; font-size: 16px;">💛 Gostou dos jogos? Ajude-me a criar mais conteúdos gratuitos!</p>
-        <a href="https://ko-fi.com/meusjogos" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: #FF5E5B; color: white; padding: 12px 28px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 16px; transition: transform 0.2s;">
-            ☕ Me pague um café
-        </a>
-    </div>
-</div>
-
-</div>
-
-    </div>
-</div>
-
-</div>
-
-<!-- 🎵 MUSICA DE FUNDO -->
-<div style="text-align: center; margin: 40px 0 20px;">
-   <audio id="musicaFundo" loop preload="auto">
-    <source src="MEUS JOGOS - V1.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-
-
-
-
-    
-    
-    <button onclick="toggleMusica()" id="botaoMusica" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 12px 28px; border-radius: 30px; font-size: 16px; cursor: pointer; font-weight: bold; transition: transform 0.2s;">
-        🎵 Tocar Música
-    </button>
-</div>
-
-<script>
-let musicaTocando = false;
-function toggleMusica() {
-    const audio = document.getElementById('musicaFundo');
-    const botao = document.getElementById('botaoMusica');
-    
-    if (musicaTocando) {
-        audio.pause();
-        botao.innerHTML = '🎵 Tocar Música';
-    } else {
-        audio.play().catch(e => console.log('Clique na página primeiro'));
-        botao.innerHTML = '🔊 Pausar Música';
-    }
-    musicaTocando = !musicaTocando;
-}
-</script>
-
+    <script>
+        let musicaTocando = false;
+        function toggleMusica() {
+            const audio = document.getElementById('musicaFundo');
+            const botao = document.getElementById('botaoMusica');
+            
+            if (musicaTocando) {
+                audio.pause();
+                botao.innerHTML = '🎵 Tocar Música';
+            } else {
+                audio.play().catch(function() {
+                    console.log('Clique na página primeiro');
+                });
+                botao.innerHTML = '🔊 Pausar Música';
+            }
+            musicaTocando = !musicaTocando;
+        }
+    </script>
+</body>
+</html>
 
 
 
