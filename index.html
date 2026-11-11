@@ -1,254 +1,167 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Jogos 🎮</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
 
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            min-height: 100vh;
-            color: #f0f0f0;
-        }
 
-        /* === CABEÇALHO === */
-        header {
-            background: rgba(15, 23, 42, 0.95);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    <!-- === ESTILO PERSONALIZADO === -->
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #818cf8;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+body {
+    background: #0f0f0f;
+    color: #ffffff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+}
 
-        .logo span {
-            color: #f0f0f0;
-        }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
 
-        .header-info {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
+.titulo-pagina {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 50px;
+    color: #ffffff;
+}
 
-        .online-badge {
-            background: rgba(34, 197, 94, 0.2);
-            color: #4ade80;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+.grade-jogos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
 
-        .online-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: #4ade80;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
+.cartao-jogo {
+    background: #1a1a1a;
+    border-radius: 16px;
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
+.cartao-jogo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+}
 
-        /* === CONTEÚDO PRINCIPAL === */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+/* Cores individuais de cada jogo */
+.cartao-shark::before { background: linear-gradient(90deg, #00d4ff, #0099cc); }
+.cartao-lucy::before { background: linear-gradient(90deg, #ff9500, #cc7700); }
+.cartao-hortilike::before { background: linear-gradient(90deg, #34c759, #289647); }
+.cartao-turbo::before { background: linear-gradient(90deg, #ff3b30, #cc2f26); }
 
-        .page-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+.cartao-jogo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
 
-        .page-title h1 {
-            font-size: 36px;
-            color: #e0e7ff;
-            margin-bottom: 10px;
-        }
+.capa-jogo {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
 
-        .page-title p {
-            color: #94a3b8;
-            font-size: 18px;
-        }
+.nome-jogo {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
 
-        /* === GRADE DE JOGOS === */
-        .jogos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-        }
+.descricao-jogo {
+    font-size: 14px;
+    color: #b0b0b0;
+    margin-bottom: 20px;
+}
 
-        .jogo-card {
-            background: rgba(30, 41, 59, 0.8);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
+.botao-jogar {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+}
 
-        .jogo-card:hover {
-            transform: translateY(-8px);
-            border-color: #6366f1;
-            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.25);
-        }
+/* Cores dos botões */
+.botao-shark { background: linear-gradient(135deg, #00d4ff, #0099cc); color: white; }
+.botao-lucy { background: linear-gradient(135deg, #ff9500, #cc7700); color: white; }
+.botao-hortilike { background: linear-gradient(135deg, #34c759, #289647); color: white; }
+.botao-turbo { background: linear-gradient(135deg, #ff3b30, #cc2f26); color: white; }
 
-        .jogo-capa {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: #1e293b;
-        }
+.botao-jogar:hover {
+    transform: scale(1.05);
+}
 
-        .jogo-info {
-            padding: 20px;
-        }
+.apoie {
+    text-align: center;
+    margin: 60px 0 30px;
+    padding-top: 40px;
+    border-top: 1px solid #2a2a2a;
+}
+</style>
 
-        .jogo-nome {
-            font-size: 22px;
-            font-weight: bold;
-            color: #e0e7ff;
-            margin-bottom: 10px;
-        }
-
-        .jogo-desc {
-            color: #94a3b8;
-            font-size: 14px;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .btn-jogar {
-            display: block;
-            width: 100%;
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            color: white;
-            text-align: center;
-            padding: 12px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            transition: all 0.2s ease;
-        }
-
-        .btn-jogar:hover {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-        }
-
-        /* === SEM IMAGEM === */
-        .sem-imagem {
-            height: 200px;
-            background: linear-gradient(135deg, #312e81 0%, #4c1d95 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #64748b;
-            font-size: 14px;
-        }
-    </style>
-</head>
-<body>
-
-<!-- === CABEÇALHO === -->
-<header>
-    <div class="logo">
-        🎮 <span>Meus Jogos</span>
-    </div>
-    <div class="header-info">
-        <div class="online-badge">3 jogando agora</div>
-    </div>
-</header>
-
-<!-- === CONTEÚDO PRINCIPAL === -->
-<main>
-    <div class="page-title">
-        <h1>Jogos Online Grátis 🎮</h1>
-        <p>Joga direto no navegador, sem precisar baixar nada!</p>
-    </div>
-
-    <div class="jogos-grid">
-
+<!-- === CONTEÚDO DOS JOGOS === -->
+<div class="container">
+    <h1 class="titulo-pagina">🎮 Meus Jogos — Jogue Direto no Navegador!</h1>
+    
+    <div class="grade-jogos">
+        
         <!-- 🦈 SHARK SURF -->
-        <div class="jogo-card">
-            <img src="Captura de tela 2026-11-10 085937.png" alt="Shark Surf v30" class="jogo-capa">
-            <div class="jogo-info">
-                <h3 class="jogo-nome">Shark Surf v30</h3>
-                <p class="jogo-desc">Desliza e se diverte! Joga direto sem baixar 🦈🏄</p>
-                <a href="capivara-surf-v30.html" target="_blank" class="btn-jogar">▶️ JOGAR AGORA</a>
-            </div>
+        <div class="cartao-jogo cartao-shark">
+            <img src="Captura de tela 2026-11-10 091855.png" alt="Shark Surf v30" class="capa-jogo">
+            <h3 class="nome-jogo">🦈 Shark Surf v30</h3>
+            <p class="descricao-jogo">Desliza e se diverte! Joga direto sem precisar baixar nada! 🌊</p>
+            <a href="capivara-surf-v30.html" target="_blank" class="botao-jogar botao-shark">▶️ JOGAR AGORA</a>
         </div>
 
         <!-- 🏔️ ROCHA DA LUCY -->
-        <div class="jogo-card">
-            <img src="Captura de tela 2026-11-10 091000.png" alt="Rocha da Lucy" class="jogo-capa">
-            <div class="jogo-info">
-                <h3 class="jogo-nome">Rocha da Lucy</h3>
-                <p class="jogo-desc">Explore e divirta-se! Uma aventura te espera 🏔️✨</p>
-                <a href="Roca_da_Lucy.html" target="_blank" class="btn-jogar">▶️ JOGAR AGORA</a>
-            </div>
+        <div class="cartao-jogo cartao-lucy">
+            <img src="Captura de tela 2026-11-10 091909.png" alt="Rocha da Lucy" class="capa-jogo">
+            <h3 class="nome-jogo">🏔️ Rocha da Lucy</h3>
+            <p class="descricao-jogo">Explore e divirta-se! Uma aventura te espera nas montanhas! ⛰️</p>
+            <a href="Roca_da_Lucy.html" target="_blank" class="botao-jogar botao-lucy">▶️ JOGAR AGORA</a>
         </div>
 
         <!-- 🌿 HORTILIKE -->
-        <div class="jogo-card">
-            <img src="Captura de tela 2026-11-10 091855.png" alt="Hortilike" class="jogo-capa">
-            <div class="jogo-info">
-                <h3 class="jogo-nome">Hortilike</h3>
-                <p class="jogo-desc">Jogo de aventura e estratégia! Divirta-se 🌿🎮</p>
-                <a href="Hortilike.html" target="_blank" class="btn-jogar">▶️ JOGAR AGORA</a>
-            </div>
+        <div class="cartao-jogo cartao-hortilike">
+            <img src="Captura de tela 2026-11-10 092011.png" alt="Hortilike" class="capa-jogo">
+            <h3 class="nome-jogo">🌿 Hortilike</h3>
+            <p class="descricao-jogo">Jogo de aventura e estratégia! Divirta-se plantando e explorando! 🌱</p>
+            <a href="Hortilike.html" target="_blank" class="botao-jogar botao-hortilike">▶️ JOGAR AGORA</a>
+        </div>
+
+        <!-- 🏁 TURBO ARCADE 3D -->
+        <div class="cartao-jogo cartao-turbo">
+            <img src="Captura de tela 2026-11-11 145538.png" alt="Turbo Arcade 3D Corrida" class="capa-jogo">
+            <h3 class="nome-jogo">🏁 Turbo Arcade 3D Corrida</h3>
+            <p class="descricao-jogo">Corrida 3D divertida! Escolha seu personagem e acelera! 🚗💨</p>
+            <a href="Turbo Arcade 3D (2).html" target="_blank" class="botao-jogar botao-turbo">▶️ JOGAR AGORA</a>
         </div>
 
     </div>
-</main>
 
-<footer>
-    <p>🎮 Meus Jogos — Todos os direitos reservados</p>
-    <!-- === APOIE MEUS JOGOS === -->
-<div style="text-align: center; margin: 50px 0 30px;">
-    <p style="color: #94a3b8; margin-bottom: 12px; font-size: 15px;">💛 Gostou dos jogos? Ajude-me a criar mais conteúdos gratuitos!</p>
-    <a href="https://ko-fi.com/meusjogos" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: #FF5E5B; color: white; padding: 12px 28px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 16px; transition: transform 0.2s, box-shadow 0.2s;">
-        ☕ Me pague um café
-    </a>
-<!-- === TURBO ARCADE 3D CORRIDA === -->
-<div class="jogo">
-<   <img src="Captura de tela 2026-11-11 145538.png" alt="Turbo Arcade 3D Corrida" style="width: 100%; border-radius: 12px; margin-bottom: 15px;">
-    <h3>🏁 Turbo Arcade 3D Corrida</h3>
-    <p>Corrida 3D divertida! Escolha seu personagem e acelera! 🚗💨</p>
-    <a href="Turbo Arcade 3D (2).html" target="_blank">▶️ JOGAR AGORA</a>
+    <!-- 💛 BOTÃO DE APOIO -->
+    <div class="apoie">
+        <p style="color: #888; margin-bottom: 15px; font-size: 16px;">💛 Gostou dos jogos? Ajude-me a criar mais conteúdos gratuitos!</p>
+        <a href="https://ko-fi.com/meusjogos" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: #FF5E5B; color: white; padding: 12px 28px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 16px; transition: transform 0.2s;">
+            ☕ Me pague um café
+        </a>
+    </div>
+</div>
+
 </div>
 
 </div>
