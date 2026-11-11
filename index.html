@@ -175,7 +175,37 @@ body {
 
 </div>
 
+```
+<!-- 🎵 MUSICA DE FUNDO -->
+<div style="text-align: center; margin: 40px 0 20px;">
+    <audio id="musicaFundo" loop preload="auto">
+        <source src="MEUS JOGOS - V1.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    
+    
+    <button onclick="toggleMusica()" id="botaoMusica" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 12px 28px; border-radius: 30px; font-size: 16px; cursor: pointer; font-weight: bold; transition: transform 0.2s;">
+        🎵 Tocar Música
+    </button>
 </div>
+
+<script>
+let musicaTocando = false;
+function toggleMusica() {
+    const audio = document.getElementById('musicaFundo');
+    const botao = document.getElementById('botaoMusica');
+    
+    if (musicaTocando) {
+        audio.pause();
+        botao.innerHTML = '🎵 Tocar Música';
+    } else {
+        audio.play().catch(e => console.log('Clique na página primeiro'));
+        botao.innerHTML = '🔊 Pausar Música';
+    }
+    musicaTocando = !musicaTocando;
+}
+</script>
+
+
 
 </footer>
 
