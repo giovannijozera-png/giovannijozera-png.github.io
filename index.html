@@ -63,6 +63,7 @@
         .cartao-lucy::before { background: linear-gradient(90deg, #ff9500, #cc7700); }
         .cartao-hortilike::before { background: linear-gradient(90deg, #34c759, #289647); }
         .cartao-turbo::before { background: linear-gradient(90deg, #ff3b30, #cc2f26); }
+        .cartao-memoria::before { background: linear-gradient(90deg, #af52de, #8944b8); }
 
         .cartao-jogo:hover {
             transform: translateY(-5px);
@@ -107,6 +108,7 @@
         .botao-lucy { background: linear-gradient(135deg, #ff9500, #cc7700); color: white; }
         .botao-hortilike { background: linear-gradient(135deg, #34c759, #289647); color: white; }
         .botao-turbo { background: linear-gradient(135deg, #ff3b30, #cc2f26); color: white; }
+        .botao-memoria { background: linear-gradient(135deg, #af52de, #8944b8); color: white; }
 
         .botao-jogar:hover {
             transform: scale(1.05);
@@ -119,25 +121,21 @@
             border-top: 1px solid #2a2a2a;
         }
 
-        .musica-container {
-            text-align: center;
-            margin: 40px 0;
-            padding-top: 20px;
-        }
-
-        .botao-musica {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .kofi-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #FF5E5B;
             color: white;
-            border: none;
             padding: 12px 28px;
-            border-radius: 30px;
-            font-size: 16px;
-            cursor: pointer;
+            border-radius: 12px;
+            text-decoration: none;
             font-weight: bold;
+            font-size: 16px;
             transition: transform 0.2s;
         }
 
-        .botao-musica:hover {
+        .kofi-link:hover {
             transform: scale(1.05);
         }
     </style>
@@ -166,7 +164,7 @@
 
             <!-- 🌿 HORTILIKE -->
             <div class="cartao-jogo cartao-hortilike">
-                <img src="Captura de tela 2026-11-11 163056.png" alt="Hortilike" class="capa-jogo">
+                <img src="Captura de tela 2026-11-10 091855.png" alt="Hortilike" class="capa-jogo">
                 <h3 class="nome-jogo">🌿 Hortilike</h3>
                 <p class="descricao-jogo">Jogo de aventura e estratégia! Divirta-se plantando e explorando! 🌱</p>
                 <a href="Hortilike.html" target="_blank" class="botao-jogar botao-hortilike">▶️ JOGAR AGORA</a>
@@ -179,46 +177,25 @@
                 <p class="descricao-jogo">Corrida 3D divertida! Escolha seu personagem e acelera! 🚗💨</p>
                 <a href="Turbo Arcade 3D (2).html" target="_blank" class="botao-jogar botao-turbo">▶️ JOGAR AGORA</a>
             </div>
+
+            <!-- 🧠 JOGO DA MEMÓRIA 3D -->
+            <div class="cartao-jogo cartao-memoria">
+                <img src="Captura de tela 2026-11-11 185146.png" alt="Jogo da Memória 3D" class="capa-jogo">
+                <h3 class="nome-jogo">🧠 Jogo da Memória 3D</h3>
+                <p class="descricao-jogo">Teste sua memória em 3D! Encontre os pares e divirta-se! 🧩</p>
+                <a href="jogo-memoria-3d.html" target="_blank" class="botao-jogar botao-memoria">▶️ JOGAR AGORA</a>
+            </div>
         </div>
 
-        <!-- 🎵 MÚSICA DE FUNDO -->
-        <div class="musica-container">
-            <audio id="musicaFundo" loop preload="auto">
-                <source src="MEUS JOGOS - V1.mp3" type="audio/mpeg">
-                Seu navegador não suporta áudio.
-            
-            <button onclick="toggleMusica()" class="botao-musica" id="botaoMusica">
-                🎵 Tocar Música
-            </button>
-        </div>
-
-        <!-- 💛 BOTÃO DE APOIO -->
+        <!-- 💛 APOIE -->
         <div class="apoie">
             <p style="color: #888; margin-bottom: 15px; font-size: 16px;">💛 Gostou dos jogos? Ajude-me a criar mais conteúdos gratuitos!</p>
-            <a href="https://ko-fi.com/meusjogos" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: #FF5E5B; color: white; padding: 12px 28px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 16px; transition: transform 0.2s;">
-                ☕ Me pague um café
-            </a>
+            <a href="https://ko-fi.com/Meusjogos" target="_blank" class="kofi-link">☕ Me pague um café</a>
         </div>
     </div>
+</body>
+</html>
 
-    <script>
-        let musicaTocando = false;
-        function toggleMusica() {
-            const audio = document.getElementById('musicaFundo');
-            const botao = document.getElementById('botaoMusica');
-            
-            if (musicaTocando) {
-                audio.pause();
-                botao.innerHTML = '🎵 Tocar Música';
-            } else {
-                audio.play().catch(function() {
-                    console.log('Clique na página primeiro');
-                });
-                botao.innerHTML = '🔊 Pausar Música';
-            }
-            musicaTocando = !musicaTocando;
-        }
-    </script>
 </body>
 </html>
 
