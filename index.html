@@ -1,6 +1,5 @@
 
-
-    <!-- === ESTILO PERSONALIZADO === -->
+<!-- === ESTILO PERSONALIZADO === -->
 <style>
 * {
     margin: 0;
@@ -30,8 +29,9 @@ body {
 
 .grade-jogos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
+    align-items: stretch;
 }
 
 .cartao-jogo {
@@ -41,6 +41,9 @@ body {
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .cartao-jogo::before {
@@ -52,7 +55,6 @@ body {
     height: 4px;
 }
 
-/* Cores individuais de cada jogo */
 .cartao-shark::before { background: linear-gradient(90deg, #00d4ff, #0099cc); }
 .cartao-lucy::before { background: linear-gradient(90deg, #ff9500, #cc7700); }
 .cartao-hortilike::before { background: linear-gradient(90deg, #34c759, #289647); }
@@ -65,14 +67,14 @@ body {
 
 .capa-jogo {
     width: 100%;
-    height: 180px;
+    height: 160px;
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 15px;
 }
 
 .nome-jogo {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 10px;
     color: #ffffff;
 }
@@ -81,6 +83,7 @@ body {
     font-size: 14px;
     color: #b0b0b0;
     margin-bottom: 20px;
+    flex-grow: 1;
 }
 
 .botao-jogar {
@@ -93,9 +96,9 @@ body {
     transition: all 0.3s;
     border: none;
     cursor: pointer;
+    text-align: center;
 }
 
-/* Cores dos botões */
 .botao-shark { background: linear-gradient(135deg, #00d4ff, #0099cc); color: white; }
 .botao-lucy { background: linear-gradient(135deg, #ff9500, #cc7700); color: white; }
 .botao-hortilike { background: linear-gradient(135deg, #34c759, #289647); color: white; }
@@ -119,12 +122,6 @@ body {
     
     <div class="grade-jogos">
         
-       <!-- === CONTEÚDO DOS JOGOS === -->
-<div class="container">
-    <h1 class="titulo-pagina">🎮 Meus Jogos — Jogue Direto no Navegador!</h1>
-    
-    <div class="grade-jogos">
-        
         <!-- 🦈 SHARK SURF -->
         <div class="cartao-jogo cartao-shark">
             <img src="Captura de tela 2026-11-10 091855.png" alt="Shark Surf v30" class="capa-jogo">
@@ -138,14 +135,13 @@ body {
             <img src="Captura de tela 2026-11-10 091909.png" alt="Rocha da Lucy" class="capa-jogo">
             <h3 class="nome-jogo">🏔️ Rocha da Lucy</h3>
             <p class="descricao-jogo">Explore e divirta-se! Uma aventura te espera nas montanhas! ⛰️</p>
-            <p class="descricao-jogo">Não tem descrição longa, mas o cartão vai ficar do mesmo tamanho mesmo assim.</p>
             <a href="Roca_da_Lucy.html" target="_blank" class="botao-jogar botao-lucy">▶️ JOGAR AGORA</a>
         </div>
 
         <!-- 🌿 HORTILIKE -->
         <div class="cartao-jogo cartao-hortilike">
             <img src="Captura de tela 2026-11-10 092011.png" alt="Hortilike" class="capa-jogo">
-            <h3 class="nome-jogo">🌿 Hortilike</hpoint>
+            <h3 class="nome-jogo">🌿 Hortilike</h3>
             <p class="descricao-jogo">Jogo de aventura e estratégia! Divirta-se plantando e explorando! 🌱</p>
             <a href="Hortilike.html" target="_blank" class="botao-jogar botao-hortilike">▶️ JOGAR AGORA</a>
         </div>
@@ -169,14 +165,6 @@ body {
     </div>
 </div>
 
-    </div>
-
-    <!-- 💛 BOTÃO DE APOIO -->
-    <div class="apoie">
-        <p style="color: #888; margin-bottom: 15px; font-size: 16px;">💛 Gostou dos jogos? Ajude-me a criar mais conteúdos gratuitos!</p>
-        <a href="https://ko-fi.com/meusjogos" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: #FF5E5B; color: white; padding: 12px 28px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 16px; transition: transform 0.2s;">
-            ☕ Me pague um café
-        </a>
     </div>
 </div>
 
